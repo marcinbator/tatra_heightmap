@@ -1,20 +1,22 @@
-﻿# Tatry MC PL+SK
+# Tatry heightmap PL+SK
 
-## 1. Pobieranie i konwersja map PL i SK
+Project for building a heightmap of the Polish and Slovak Tatra Mountains at 1px=1m (PL) and 1px=10m (SK) resolution. The map can be used for 3D models and for creating maps for games such as Minecraft.
 
-1. Zgodnie z instrukcjami w folderach `polska` i `slowacja` pobrać dane.
-2. Uruchomić odpowiednie skrypty konwersji danych.
+## 1. Downloading and converting PL and SK maps
 
-## 2. Łączenie map
+1. Follow the instructions in the `polska` and `slowacja` folders to download the data.
+2. Run the corresponding data conversion scripts.
 
-1. Plik `tatry_full_16bit_25pct.tif` zawiera połączone w .xcf (Gimp) mapy 16bit pomniejszone o 75% (1/4 rozmiaru rzeczywistego).
-2. Aby zmniejszyć plik wynikowy, wykonać np.:
+## 2. Merging maps
+
+1. The file `tatry_full_16bit_25pct.tif` contains the maps merged in .xcf (Gimp), 16-bit, reduced by 75% (1/4 of actual size).
+2. To reduce the resulting file size, run e.g.:
 
 `gdal_translate -outsize 80% 80% -r average tatry_full_16bit_25pct.tif tatry_full_16bit_20pct.tif`
 
-## 3. Import WorldPainter
+## 3. WorldPainter import
 
-1. Ustawienia (skala 1:1 wysokość/szerokość, można wyższy high mapping):
+1. Settings (1:1 height/width scale, higher high mapping is possible):
 
-- dla mapy 25%: scale 100%, low mapping: -64, high mapping: 480
-- dla mapy 20%: scale 100%, low mapping: -64, high mapping: 368
+- for the 25% map: scale 100%, low mapping: -64, high mapping: 480
+- for the 20% map: scale 100%, low mapping: -64, high mapping: 368

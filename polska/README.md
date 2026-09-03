@@ -1,29 +1,29 @@
-﻿# Polska - pobieranie i konwersja DTM
+# Poland - downloading and converting DTM
 
-## 1. Pobieranie
+## 1. Download
 
-Zrodlo: geoportal.gov.pl, usluga WCS (NMT GRID1, DTM_PL-KRON86-NH)
+Source: geoportal.gov.pl, WCS service (NMT GRID1, DTM_PL-KRON86-NH)
 
-Skrypt: `download_geoportal.py`
+Script: `download_geoportal.py`
 
-- Zakres: coords_wgs84 od 19.55E-20.45E, 49.00N-49.319372N
-- Metoda: kafle 2645m z zakladka (overlap) 20m, format .asc (AAIGrid), CRS EPSG:2180, rozdzielczosc 1m
-- Output: pliki .asc w tym folderze (350 kafli)
-- Uruchomienie: `uv run download_geoportal.py` (wznawialny - pomija juz pobrane pliki)
+- Range: coords_wgs84 from 19.55E-20.45E, 49.00N-49.319372N
+- Method: 2645m tiles with a 20m overlap, .asc format (AAIGrid), CRS EPSG:2180, 1m resolution
+- Output: .asc files in this folder (350 tiles)
+- Run with: `uv run download_geoportal.py` (resumable, skips already downloaded files)
 
-## 2. Konwersja
+## 2. Conversion
 
-Skrypt: `convert.py`
+Script: `convert.py`
 
-- Wczytuje wszystkie .asc, filtruje NODATA_value + artefakty (<100m)
-- Sklejanie z usrednianiem na obszarach zakladki (sum_map/count_map)
-- Output: tatry_pl_dem_v4.tif (Float32, metry, EPSG:2180, NoData=-9999)
-  Min=748.96m, Max=2558.39m, Valid=16.64% (reszta poza zasiegiem PL danych)
+- Loads all .asc files, filters NODATA_value + artifacts (<100m)
+- Merges with averaging in overlap areas (sum_map/count_map)
+- Output: tatry_pl_dem_v4.tif (Float32, meters, EPSG:2180, NoData=-9999)
+  Min=748.96m, Max=2558.39m, Valid=16.64% (the rest is outside the PL data coverage)
 
-## 3. Konwersja do 16-bit + skalowanie
+## 3. Conversion to 16-bit + scaling
 
 `gdal_translate -ot UInt16 -scale 530.066 2655.259 0 65535 -a_nodata 0 tatry_pl_dem_v4.tif tatry_pl_v4_16bit.tif`
 `gdal_translate -ot UInt16 -scale 530.066 2655.259 0 65535 -a_nodata 0 -outsize 25% 25% -r average tatry_pl_dem_v4.tif tatry_pl_v4_16bit_25pct.tif`
 
-WAZNE: zakres skalowania 530.066-2655.259 to WSPOLNY zakres PL+SK (nie tylko PL!),
-zeby te same odcienie szarosci = ta sama wysokosc po obu stronach granicy.
+IMPORTANT: the scaling range 530.066-2655.259 is the COMBINED PL+SK range (not just PL),
+so that the same shades of gray correspond to the same elevation on both sides of the border.
