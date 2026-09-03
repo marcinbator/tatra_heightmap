@@ -20,3 +20,5 @@ Project for building a heightmap of the Polish and Slovak Tatra Mountains at 1px
 
 - for the 25% map: scale 100%, low mapping: -64, high mapping: 480
 - for the 20% map: scale 100%, low mapping: -64, high mapping: 368
+
+Best scale is <-64, 426>.
