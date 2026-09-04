@@ -22,3 +22,13 @@ Project for building a heightmap of the Polish and Slovak Tatra Mountains at 1px
 - for the 20% map: scale 100%, low mapping: -64, high mapping: 368
 
 Best scale is <-64, 426>.
+
+## 4. Ortofoto
+
+geoportal.gov.pl and ZBGIS WCS were too unstable (timeouts). Used: Sentinel-2 cloudless (EOX), without splitting PL/SK, ~10m/px.
+
+```powershell
+gdal_translate -of GTiff -projwin 19.55 49.319372 20.45 49.00 -projwin_srs EPSG:4326 -outsize 6550 3550 "WMS:https://tiles.maps.eox.at/wms?service=WMS&request=GetMap&layers=s2cloudless-2024&styles=default&srs=EPSG:4326&format=image/jpeg" ortofoto_tatry_seamless.tif
+
+gdalwarp -t_srs EPSG:2180 -tr 4 4 -r cubic ortofoto_tatry_seamless.tif ortofoto_tatry_2180.tif
+```
