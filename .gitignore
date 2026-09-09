@@ -1,4 +1,5 @@
 .venv
+__pycache__/
 tatry_pl_dtm_tiles*
 tatry_pl*
 dmr*
@@ -6,3 +7,5 @@ tatry_sk*
 *.world
 tatry_full*
 ortofoto*
+land_cover/
+terrain*.png

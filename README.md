@@ -32,3 +32,7 @@ gdal_translate -of GTiff -projwin 19.55 49.319372 20.45 49.00 -projwin_srs EPSG:
 
 gdalwarp -t_srs EPSG:2180 -tr 4 4 -r cubic ortofoto_tatry_seamless.tif ortofoto_tatry_2180.tif
 ```
+
+## 5. Land cover overlays
+
+Follow the instructions in the `maps` folder to download and render OSM land-cover overlays (forest, rock, water, roads, etc.) aligned to the heightmap.
