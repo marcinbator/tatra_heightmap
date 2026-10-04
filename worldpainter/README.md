@@ -12,7 +12,7 @@ Backup the `.world` file (and the Minecraft world, if merging) before each step 
 
 ## 2. Lakes (water)
 
-`Tools → Run script...` → `maps/flood_lakes.js`, argument: full path to `tatry_full_16bit_20pct_jeziora_water.png`
+`Tools → Run script...` → `worldpainter/scripts/flood_lakes.js`, argument: full path to `tatry_full_16bit_20pct_jeziora_water.png`
 
 - Water level = lowest part of the shore, gentle shore profile, gaps in the shore filled
 - Knobs at the top of the script: `SHORE_PCT` (water height), `SLOPE` (shore steepness)

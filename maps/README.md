@@ -41,7 +41,7 @@ uv run --with matplotlib --with shapely --with pyproj --with pillow render_masks
 Script: `fix_lakes.py` — carves a smooth basin for every lake into the heightmap and writes:
 
 - `..._jeziora.tif` — heightmap to import into WorldPainter
-- `..._jeziora_water.png` — lake IDs for `flood_lakes.js`
+- `..._jeziora_water.png` — lake IDs for `worldpainter/scripts/flood_lakes.js`
 - `..._jeziora_lakes.csv` — lake list with world coordinates
 
 ```powershell
@@ -52,6 +52,6 @@ uv run --with rasterio --with numpy --with scipy --with shapely --with pyproj --
     --embank-px 0 --shore-percentile 5
 ```
 
-Always use the original `tatry_full_16bit_20pct.tif` as `--in`. Water itself is set inside WorldPainter by `flood_lakes.js` (see `worldpainter/README.md`).
+Always use the original `tatry_full_16bit_20pct.tif` as `--in`. Water itself is set inside WorldPainter by `worldpainter/scripts/flood_lakes.js` (see `worldpainter/README.md`).
 
 WorldPainter runs scripts in an ES5 engine: no trailing commas in function calls (`.prettierrc`: `{ "trailingComma": "none" }`).
