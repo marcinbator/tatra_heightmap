@@ -103,7 +103,7 @@ out skel qt;
     "roads": r"""
 [out:json][timeout:180];
 (
-  way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|track|path|footway|cycleway|pedestrian)$"]({s},{w},{n},{e});
+  way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|track|path|footway|cycleway|pedestrian|steps)$"]({s},{w},{n},{e});
 );
 out body;
 >>;
@@ -411,9 +411,7 @@ def merge_geojsons(paths: list[Path], dest: Path) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(
-        description="Tatra land-cover scraper (OSM / Overpass)"
-    )
+    p = argparse.ArgumentParser(description="Tatra land-cover scraper (OSM / Overpass)")
     p.add_argument("--out", default="land_cover", help="output directory")
     p.add_argument(
         "--layers",
